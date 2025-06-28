@@ -21,6 +21,7 @@ import {
 import Link from "next/link"
 import RHSLogo from "@/components/logo"
 import { useTheme } from "@/contexts/theme-context"
+import StudentPortalSection from "@/components/student-portal-section"
 
 export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -63,10 +64,10 @@ export default function HomePage() {
               <Link href="#academics" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Academics
               </Link>
-              <Link href="#faculty" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              <Link href="/faculty" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Faculty
               </Link>
-              <Link href="#gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              <Link href="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Gallery
               </Link>
               <Link href="#admissions" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
@@ -113,14 +114,14 @@ export default function HomePage() {
                   Academics
                 </Link>
                 <Link
-                  href="#faculty"
+                  href="/faculty"
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Faculty
                 </Link>
                 <Link
-                  href="#gallery"
+                  href="/gallery"
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -387,6 +388,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Student Portal Section */}
+      <StudentPortalSection />
+
       {/* Admissions Section */}
       <section id="admissions" className={`${layoutClasses.sectionSpacing} bg-white`}>
         <div className="container mx-auto px-4">
@@ -470,7 +474,7 @@ export default function HomePage() {
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="md:col-span-2">
                 <div className="mb-4">
                   <RHSLogo variant={logoStyle} size="md" theme={theme} onDark={true} />
@@ -481,56 +485,75 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div>
-                <h4 className="font-semibold mb-4">Quick Links</h4>
-                <ul className="space-y-2 text-sm opacity-90">
-                  <li>
-                    <Link href="#about" className="hover:text-blue-400 transition-colors">
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#academics" className="hover:text-blue-400 transition-colors">
-                      Academics
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#admissions" className="hover:text-blue-400 transition-colors">
-                      Admissions
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#contact" className="hover:text-blue-400 transition-colors">
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
+              {/* Quick Links and Resources - side by side on mobile, separate columns on desktop */}
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:gap-0">
+                <div>
+                  <h4 className="font-semibold mb-4">Quick Links</h4>
+                  <ul className="space-y-2 text-sm opacity-90">
+                    <li>
+                      <Link href="#about" className="hover:text-blue-400 transition-colors">
+                        About Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#academics" className="hover:text-blue-400 transition-colors">
+                        Academics
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/faculty" className="hover:text-blue-400 transition-colors">
+                        Faculty
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/gallery" className="hover:text-blue-400 transition-colors">
+                        Gallery
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#admissions" className="hover:text-blue-400 transition-colors">
+                        Admissions
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#contact" className="hover:text-blue-400 transition-colors">
+                        Contact
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
-              <div>
-                <h4 className="font-semibold mb-4">Resources</h4>
-                <ul className="space-y-2 text-sm opacity-90">
-                  <li>
-                    <Link href="#" className="hover:text-blue-400 transition-colors">
-                      Student Portal
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-blue-400 transition-colors">
-                      Parent Portal
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-blue-400 transition-colors">
-                      Faculty
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:text-blue-400 transition-colors">
-                      Alumni
-                    </Link>
-                  </li>
-                </ul>
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:gap-0">
+                <div>
+                  <h4 className="font-semibold mb-4">Resources</h4>
+                  <ul className="space-y-2 text-sm opacity-90">
+                    <li>
+                      <Link
+                        href="https://osms.mponline.gov.in/Portal/SMS/Home/SchoolLogin.aspx?ReqSchId=rtuKwB6rRa04MKr82BdLhA=="
+                        target="_blank"
+                        className="hover:text-blue-400 transition-colors"
+                      >
+                        Student Portal
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="hover:text-blue-400 transition-colors">
+                        Parent Portal
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="hover:text-blue-400 transition-colors">
+                        Faculty
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#" className="hover:text-blue-400 transition-colors">
+                        Alumni
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
