@@ -3,6 +3,9 @@ import type { Metadata } from "next"
 import { Inter, Poppins, Playfair_Display, Roboto, Montserrat } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/contexts/theme-context"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-poppins" })
@@ -13,12 +16,13 @@ const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat
 export const metadata: Metadata = {
   title: "Ravindra High School - Excellence in Education | Waidhan, Singrauli",
   description:
-    "Providing quality education with modern facilities, experienced faculty, and holistic development for students from primary to high school levels (Classes I-X).",
-  keywords: "Ravindra High School, RHS, Waidhan, Singrauli, school, education, admission, CBSE, Madhya Pradesh",
+    "Providing quality education with modern facilities, experienced faculty, and holistic development for students from primary to high school levels (Classes I-X) following NCERT curriculum.",
+  keywords: "Ravindra High School, RHS, Waidhan, Singrauli, school, education, admission, NCERT, Madhya Pradesh",
   authors: [{ name: "Ravindra High School" }],
   openGraph: {
     title: "Ravindra High School - Excellence in Education",
-    description: "Quality education in Waidhan, Singrauli with modern facilities and experienced faculty.",
+    description:
+      "Quality education in Waidhan, Singrauli with modern facilities and experienced faculty following NCERT curriculum.",
     type: "website",
     locale: "en_IN",
   },
@@ -35,7 +39,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} ${playfair.variable} ${roboto.variable} ${montserrat.variable}`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Suspense fallback={null}>
+            {children}
+            {/* Analytics + performance */}
+            <Analytics />
+            <SpeedInsights />
+          </Suspense>
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -64,11 +64,8 @@ export default function HomePage() {
               <Link href="#academics" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Academics
               </Link>
-              <Link href="/faculty" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Faculty
-              </Link>
-              <Link href="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Gallery
+              <Link href="#portal" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                Portal
               </Link>
               <Link href="#admissions" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Admissions
@@ -114,18 +111,11 @@ export default function HomePage() {
                   Academics
                 </Link>
                 <Link
-                  href="/faculty"
+                  href="#portal"
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Faculty
-                </Link>
-                <Link
-                  href="/gallery"
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Gallery
+                  Portal
                 </Link>
                 <Link
                   href="#admissions"
@@ -163,8 +153,8 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Nurturing young minds in Waidhan, Singrauli with quality CBSE education from Classes I-X, modern
-              facilities, and a commitment to excellence that prepares students for their future.
+              Nurturing young minds in Waidhan, Singrauli with quality education from Classes I-X, following NCERT
+              curriculum, modern facilities, and a commitment to excellence that prepares students for their future.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -253,7 +243,7 @@ export default function HomePage() {
                     <div>
                       <h4 className="font-semibold text-gray-900">Academic Excellence</h4>
                       <p className="text-gray-600 text-sm">
-                        Comprehensive curriculum aligned with modern educational standards
+                        Comprehensive NCERT curriculum aligned with modern educational standards
                       </p>
                     </div>
                   </div>
@@ -320,8 +310,8 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Academic Programs</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive education from primary to high school levels with CBSE curriculum and board exam
-              preparation.
+              Comprehensive education from primary to high school levels following NCERT curriculum with focus on
+              conceptual understanding and practical application.
             </p>
           </div>
 
@@ -338,11 +328,11 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Foundation in core subjects</li>
-                  <li>• Activity-based learning</li>
+                  <li>• Foundation in core subjects (NCERT)</li>
+                  <li>• Activity-based learning approach</li>
                   <li>• Creative arts and crafts</li>
-                  <li>• Physical education</li>
-                  <li>• Moral science</li>
+                  <li>• Physical education and sports</li>
+                  <li>• Moral science and value education</li>
                 </ul>
               </CardContent>
             </Card>
@@ -357,11 +347,11 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Advanced curriculum</li>
-                  <li>• Science laboratory</li>
-                  <li>• Computer education</li>
-                  <li>• Language development</li>
-                  <li>• Project-based learning</li>
+                  <li>• Advanced NCERT curriculum</li>
+                  <li>• Science laboratory experiments</li>
+                  <li>• Computer education and digital literacy</li>
+                  <li>• Language development (Hindi & English)</li>
+                  <li>• Project-based learning methodology</li>
                 </ul>
               </CardContent>
             </Card>
@@ -376,11 +366,11 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• CBSE Board curriculum</li>
-                  <li>• Science & Mathematics</li>
+                  <li>• Complete NCERT syllabus coverage</li>
+                  <li>• Science & Mathematics specialization</li>
                   <li>• Social Studies & Languages</li>
-                  <li>• Board exam preparation</li>
-                  <li>• Career guidance counseling</li>
+                  <li>• Board exam preparation (MP Board)</li>
+                  <li>• Career guidance and counseling</li>
                 </ul>
               </CardContent>
             </Card>
@@ -408,7 +398,7 @@ export default function HomePage() {
                     <span className="font-bold">1</span>
                   </div>
                   <h4 className="font-semibold mb-2">Application</h4>
-                  <p className="text-sm opacity-90">Submit online application with required documents</p>
+                  <p className="text-sm opacity-90">Submit application with required documents</p>
                 </div>
                 <div>
                   <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-3">
@@ -501,13 +491,8 @@ export default function HomePage() {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/faculty" className="hover:text-blue-400 transition-colors">
-                        Faculty
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/gallery" className="hover:text-blue-400 transition-colors">
-                        Gallery
+                      <Link href="#portal" className="hover:text-blue-400 transition-colors">
+                        Student Portal
                       </Link>
                     </li>
                     <li>
@@ -529,22 +514,18 @@ export default function HomePage() {
                   <h4 className="font-semibold mb-4">Resources</h4>
                   <ul className="space-y-2 text-sm opacity-90">
                     <li>
-                      <Link
-                        href="https://osms.mponline.gov.in/Portal/SMS/Home/SchoolLogin.aspx?ReqSchId=rtuKwB6rRa04MKr82BdLhA=="
-                        target="_blank"
-                        className="hover:text-blue-400 transition-colors"
-                      >
-                        Student Portal
+                      <Link href="/gallery" className="hover:text-blue-400 transition-colors">
+                        Photo Gallery
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/faculty" className="hover:text-blue-400 transition-colors">
+                        Our Faculty
                       </Link>
                     </li>
                     <li>
                       <Link href="#" className="hover:text-blue-400 transition-colors">
-                        Parent Portal
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#" className="hover:text-blue-400 transition-colors">
-                        Faculty
+                        Downloads
                       </Link>
                     </li>
                     <li>
