@@ -27,7 +27,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
-    generator: 'v0.dev'
+    generator: 'v0.dev',
+    other: {
+    "google-site-verification": "iltZyQqM6H1I9e6-XCmvO7HYcIKNcJ3lxu_Krwp2eSM",
+  }
 }
 
 export default function RootLayout({
