@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Poppins, Playfair_Display, Roboto, Montserrat } from "next/font/google"
+import { Inter, Poppins, Playfair_Display, Roboto, Montserrat, Nunito } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/contexts/theme-context"
 import { Analytics } from "@vercel/analytics/react"
@@ -12,6 +12,7 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
 const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "500", "700"], variable: "--font-roboto" })
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" })
+const nunito  = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
 
 export const metadata: Metadata = {
   title: "Ravindra High School - Excellence in Education | Waidhan, Singrauli",
@@ -37,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${poppins.variable} ${playfair.variable} ${roboto.variable} ${montserrat.variable}`}
+        className={`${inter.variable} ${poppins.variable} ${playfair.variable} ${roboto.variable} ${montserrat.variable} ${nunito.variable}`}
       >
         <ThemeProvider>
           <Suspense fallback={null}>

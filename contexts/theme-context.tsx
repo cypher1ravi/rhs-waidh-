@@ -4,7 +4,7 @@ import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 
 type Theme = "blue" | "green" | "purple" | "orange" | "red"
-type Font = "inter" | "poppins" | "playfair" | "roboto" | "montserrat"
+type Font = "inter" | "poppins" | "playfair" | "roboto" | "montserrat"|"nunito"
 type Layout = "modern" | "classic" | "minimal" | "vibrant"
 type LogoStyle = "default" | "compact" | "icon-only"
 
@@ -67,6 +67,7 @@ const fontConfig = {
   playfair: "font-playfair",
   roboto: "font-roboto",
   montserrat: "font-montserrat",
+  nunito: "font-nunito",
 }
 
 const layoutConfig = {

@@ -72,7 +72,7 @@ const galleryImages: GalleryImage[] = [
   },
   {
     id: 9,
-    src: "/placeholder.svg?height=400&width=600",
+    src: "https://cypher1ravi.github.io/Rhswaidhan/img/WhatsApp%20Image%202023-05-26%20at%2012.13.00%20PM.jpeg",
     alt: "Science Exhibition",
     title: "Science Fair",
     category: "Events",

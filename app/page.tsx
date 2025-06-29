@@ -17,6 +17,9 @@ import {
   MapPin,
   Phone,
   Mail,
+  Download,
+  Presentation,
+  NotebookPen,
 } from "lucide-react"
 import Link from "next/link"
 import RHSLogo from "@/components/logo"
@@ -144,7 +147,7 @@ export default function HomePage() {
             <Badge
               className={`mb-4 bg-${themeClasses.primary}/10 text-${themeClasses.primary} hover:bg-${themeClasses.primary}/20`}
             >
-              Established Excellence Since 1985
+              Established Excellence Since 1988
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Welcome to{" "}
@@ -153,23 +156,23 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Nurturing young minds in Waidhan, Singrauli with quality education from Classes I-X, following NCERT
-              curriculum, modern facilities, and a commitment to excellence that prepares students for their future.
+              Since 1988, Ravindra High School has been shaping the future of Waidhan, Singrauli with a commitment to quality education, strong values, and personal attention. From Classes I to X, our NCERT-based curriculum, dedicated faculty, and modern learning environment ensure every child grows with confidence, curiosity, and character.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
+              {/* <Button
                 size="lg"
                 className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
               >
                 Apply for Admission
-              </Button>
-              <Button
+              </Button> */}
+                <Button
                 variant="outline"
                 size="lg"
-                className={`border-${themeClasses.primary} text-${themeClasses.primary} hover:bg-${themeClasses.primary}/5 ${layoutClasses.buttonStyle}`}
-              >
+                className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
+                onClick={() => window.location.href = "/gallery"}
+                >
                 Virtual Tour
-              </Button>
+                </Button>
             </div>
           </div>
         </div>
@@ -190,7 +193,7 @@ export default function HomePage() {
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="w-8 h-8 text-white" />
+                <Presentation className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-3xl font-bold text-gray-900 mb-2">50+</h3>
               <p className="text-gray-600">Teachers</p>
@@ -214,7 +217,7 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section id="about" className={`${layoutClasses.sectionSpacing} bg-gradient-to-br from-gray-50 to-blue-50`}>
+      <section id="about" className={`${layoutClasses.sectionSpacing} `}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -340,7 +343,7 @@ export default function HomePage() {
             <Card className={`hover:shadow-lg transition-shadow ${layoutClasses.cardStyle}`}>
               <CardHeader className="text-center pb-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-white" />
+                  <NotebookPen className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-xl">Middle School</CardTitle>
                 <CardDescription>Classes VI - VIII</CardDescription>
@@ -384,76 +387,148 @@ export default function HomePage() {
       {/* Admissions Section */}
       <section id="admissions" className={`${layoutClasses.sectionSpacing} bg-white`}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Admissions Open</h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Join the RHS family and embark on a journey of academic excellence and personal growth.
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Admissions Open</h2>
+            <p className="text-lg text-gray-600 mb-10">
+              Join the RHS family and begin a journey of academic excellence, personal growth, and future success.
             </p>
 
-            <div className={`bg-gradient-to-br ${themeClasses.gradient} rounded-2xl p-8 text-white mb-8`}>
-              <h3 className="text-2xl font-bold mb-4">Admission Process</h3>
-              <div className="grid md:grid-cols-3 gap-6 text-left">
-                <div>
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-3">
-                    <span className="font-bold">1</span>
+            {/* Step-by-Step Process */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                {
+                  title: "Application",
+                  desc: "Submit your application form with the necessary documents.",
+                  step: "1",
+                },
+                {
+                  title: "Assessment",
+                  desc: "Attend the entrance test and interview for evaluation.",
+                  step: "2",
+                },
+                {
+                  title: "Enrollment",
+                  desc: "Complete the admission process and pay the fees.",
+                  step: "3",
+                },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`bg-gradient-to-br ${themeClasses.gradient} rounded-xl text-white p-6 text-left shadow-md`}
+                >
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center font-bold">
+                      {item.step}
+                    </div>
+                    <h4 className="text-lg font-semibold">{item.title}</h4>
                   </div>
-                  <h4 className="font-semibold mb-2">Application</h4>
-                  <p className="text-sm opacity-90">Submit application with required documents</p>
+                  <p className="text-sm opacity-90">{item.desc}</p>
                 </div>
-                <div>
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-3">
-                    <span className="font-bold">2</span>
-                  </div>
-                  <h4 className="font-semibold mb-2">Assessment</h4>
-                  <p className="text-sm opacity-90">Entrance test and interview for evaluation</p>
-                </div>
-                <div>
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-3">
-                    <span className="font-bold">3</span>
-                  </div>
-                  <h4 className="font-semibold mb-2">Enrollment</h4>
-                  <p className="text-sm opacity-90">Complete admission formalities and fee payment</p>
-                </div>
-              </div>
+              ))}
             </div>
 
-            <Button
-              size="lg"
-              className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
-            >
-              Download Admission Form
-            </Button>
+            {/* Call to Action */}
+            <div className="flex flex-col items-center space-y-4">
+              <Button
+                size="lg"
+                className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download Admission Form
+              </Button>
+              <p className="text-sm text-gray-500">
+                For assistance, contact the school office or visit our campus.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className={`${layoutClasses.sectionSpacing} bg-gradient-to-br from-gray-50 to-blue-50`}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-            <p className="text-xl text-gray-600 mb-8">Contact us for any inquiries or to schedule a visit.</p>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div
-                  className={`w-16 h-16 bg-gradient-to-br ${themeClasses.gradient} rounded-full flex items-center justify-center mx-auto mb-4`}
-                >
-                  <MapPin className="w-8 h-8 text-white" />
+      {/* Contact Section */}
+      <section id="contact" className={`${layoutClasses.sectionSpacing}  bg-gradient-to-br from-gray-900 to-blue-900 text-white`}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
+              <p className="text-xl opacity-90">We're here to help and answer any questions you might have</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className={`w-12 h-12 bg-gradient-to-br ${themeClasses.gradient} rounded-full flex items-center justify-center`}>
+                      <MapPin className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Address</h4>
+                      <p className="opacity-90">
+                        Ravindra High School
+                        <br />
+                        Waidhan, Singrauli
+                        <br />
+                        Madhya Pradesh, India
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
+                      <Phone className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Phone</h4>
+                      <p className="opacity-90">
+                        +91 9826986106
+                        <br />
+                        {/* +91 87654 32109 */}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                      <Mail className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Email</h4>
+                      <p className="opacity-90">
+                        rhswaidhan@gmail.com
+                        <br />
+                        inforhswaidhan@gmail.com
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-600 text-sm">Waidhan, Singrauli</p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Phone className="w-8 h-8 text-white" />
+
+              <div>
+                <h3 className="text-2xl font-bold mb-6">School Hours</h3>
+                <div className="bg-white/10 rounded-xl p-6">
+                  <div className="space-y-4">
+                    <div className="flex justify-between">
+                      <span>KG to 5th (Morning Shift)</span>
+                      <span>7:30 AM – 11:30 AM</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>6th to 10th (Afternoon Shift)</span>
+                      <span>12:00 PM – 5:00 PM</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Sunday</span>
+                      <span>Closed</span>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-600 text-sm">+91 1234567890</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-8 h-8 text-white" />
+
+
+                <div className="mt-8">
+                  <h4 className="font-semibold mb-4">Office Hours</h4>
+                  <p className="opacity-90">Monday - Saturday: 9:00 AM - 4:00 PM</p>
+                  <p className="opacity-90">For admissions and inquiries</p>
                 </div>
-                <p className="text-gray-600 text-sm">info@rhs.com</p>
               </div>
             </div>
           </div>
@@ -470,9 +545,9 @@ export default function HomePage() {
                   <RHSLogo variant={logoStyle} size="md" theme={theme} onDark={true} />
                 </div>
                 <p className="opacity-90 mb-4">
-                  Committed to providing quality education and nurturing young minds for a brighter future in Waidhan,
-                  Singrauli.
+                  Dedicated to delivering quality education and nurturing young minds for a brighter future in Waidhan, Singrauli.
                 </p>
+
               </div>
 
               {/* Quick Links and Resources - side by side on mobile, separate columns on desktop */}
@@ -492,7 +567,7 @@ export default function HomePage() {
                     </li>
                     <li>
                       <Link href="#portal" className="hover:text-blue-400 transition-colors">
-                        Student Portal
+                        Portal
                       </Link>
                     </li>
                     <li>
@@ -523,16 +598,7 @@ export default function HomePage() {
                         Our Faculty
                       </Link>
                     </li>
-                    <li>
-                      <Link href="#" className="hover:text-blue-400 transition-colors">
-                        Downloads
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#" className="hover:text-blue-400 transition-colors">
-                        Alumni
-                      </Link>
-                    </li>
+
                   </ul>
                 </div>
               </div>
@@ -540,7 +606,7 @@ export default function HomePage() {
 
             <div className="border-t border-gray-800 mt-8 pt-8 text-center">
               <p className="text-sm opacity-75">
-                © 2024 Ravindra High School, Waidhan, Singrauli. All rights reserved.
+                © 2025 Ravindra High School, Waidhan, Singrauli. All rights reserved.
               </p>
             </div>
           </div>

@@ -96,6 +96,14 @@ export default function ThemeSelector() {
       description: "Contemporary and versatile",
       preview: "Montserrat Font",
     },
+    {
+      id: "nunito" as const,
+      name: "Nunito",
+      class: "font-nunito",
+      description: "Contemporary and versatile",
+      preview: "Nunito Font",
+    },
+    
   ]
 
   const layouts = [
