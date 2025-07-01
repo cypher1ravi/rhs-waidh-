@@ -12,7 +12,7 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
 const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "500", "700"], variable: "--font-roboto" })
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" })
-const nunito  = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
+const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
 
 export const metadata: Metadata = {
   title: "Ravindra High School - Excellence in Education | Waidhan, Singrauli",
@@ -27,8 +27,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
-    generator: 'v0.dev',
-    other: {
+  icons: {
+    icon: [
+      { url: "/favicon.ico", type: "image/x-icon" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" }
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  other: {
     "google-site-verification": "iltZyQqM6H1I9e6-XCmvO7HYcIKNcJ3lxu_Krwp2eSM",
   }
 }
