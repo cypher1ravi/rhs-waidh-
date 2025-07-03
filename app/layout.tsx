@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Ravindra High School - Excellence in Education | Waidhan, Singrauli",
   description:
     "Providing quality education with modern facilities, experienced faculty, and holistic development for students from primary to high school levels (Classes I-X) following NCERT curriculum.",
-  keywords: "Ravindra High School, RHS, Waidhan, Singrauli, school, education, admission, NCERT, Madhya Pradesh",
+  keywords: "Ravindra High School, RHS,rhswaidhan, Waidhan, Singrauli, school, education, admission, NCERT, Madhya Pradesh ",
   authors: [{ name: "Ravindra High School" }],
   openGraph: {
     title: "Ravindra High School - Excellence in Education",
@@ -36,9 +36,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
-  other: {
-    "google-site-verification": "iltZyQqM6H1I9e6-XCmvO7HYcIKNcJ3lxu_Krwp2eSM",
-  }
+  
 }
 
 export default function RootLayout({
