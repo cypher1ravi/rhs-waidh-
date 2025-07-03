@@ -99,7 +99,7 @@ const layoutConfig = {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("blue")
-  const [font, setFont] = useState<Font>("inter")
+  const [font, setFont] = useState<Font>("nunito")
   const [layout, setLayout] = useState<Layout>("modern")
   const [logoStyle, setLogoStyle] = useState<LogoStyle>("default")
 
@@ -143,7 +143,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const handleSetLogoStyle = (newLogoStyle: LogoStyle) => {
     setLogoStyle(newLogoStyle)
     localStorage.setItem("rhs-logo-style", newLogoStyle)
-  }
+  }  
 
   const getThemeClasses = () => themeConfig[theme]
   const getFontClass = () => fontConfig[font]

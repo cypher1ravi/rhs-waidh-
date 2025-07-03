@@ -24,6 +24,7 @@ const config: Config = {
         playfair: ["var(--font-playfair)", "serif"],
         roboto: ["var(--font-roboto)", "sans-serif"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
+        nunito: ["var(--font-nunito)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
