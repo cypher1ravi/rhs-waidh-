@@ -26,6 +26,8 @@ export const metadata: Metadata = {
       "Quality education in Waidhan, Singrauli with modern facilities and experienced faculty following NCERT curriculum.",
     type: "website",
     locale: "en_IN",
+    url: "https://rhswaidhan.com",
+    siteName: "Ravindra High School",
   },
   icons: {
     icon: [
@@ -35,10 +37,10 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
     shortcut: "/favicon.ico",
-        
+
   },
   manifest: "/site.webmanifest",
-  
+  alternates: { canonical: 'https://rhswaidhan.com/' },
 }
 
 export default function RootLayout({
@@ -53,7 +55,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <Suspense fallback={null}>
-            {children}            
+            {children}
             {/* Analytics + performance */}
             <Analytics />
             <SpeedInsights />
