@@ -53,7 +53,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <RHSLogo variant={logoStyle} size="md" theme={theme} onDark={false} />
+              <RHSLogo variant={logoStyle} size="md" theme={theme} onDark={false} add={false} />
             </div>
 
             {/* Desktop Navigation */}
@@ -547,11 +547,9 @@ export default function HomePage() {
                 <p className="opacity-90 mb-4">
                   Dedicated to delivering quality education and nurturing young minds for a brighter future in Waidhan, Singrauli.
                 </p>
-
               </div>
-
-              {/* Quick Links and Resources - side by side on mobile, separate columns on desktop */}
-              <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:gap-0">
+              {/* Quick Links and Resources - same row, different columns on mobile and desktop */}
+              <div className="grid grid-cols-2 gap-20">
                 <div>
                   <h4 className="font-semibold mb-4">Quick Links</h4>
                   <ul className="space-y-2 text-sm opacity-90">
@@ -582,9 +580,7 @@ export default function HomePage() {
                     </li>
                   </ul>
                 </div>
-              </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:gap-0">
                 <div>
                   <h4 className="font-semibold mb-4">Resources</h4>
                   <ul className="space-y-2 text-sm opacity-90">
@@ -601,7 +597,9 @@ export default function HomePage() {
 
                   </ul>
                 </div>
+
               </div>
+
             </div>
 
             <div className="border-t border-gray-800 mt-8 pt-8 text-center">

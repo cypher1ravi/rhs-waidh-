@@ -7,9 +7,10 @@ interface LogoProps {
   size?: "sm" | "md" | "lg" | "xl"
   theme?: "blue" | "green" | "purple" | "orange" | "red"
   onDark?: boolean // New prop to handle dark vs light backgrounds
+  add?:boolean
 }
 
-export default function RHSLogo({ variant = "default", size = "md", theme = "blue", onDark = false }: LogoProps) {
+export default function RHSLogo({ variant = "default", size = "md", theme = "blue", onDark = false, add = true }: LogoProps) {
   const sizeClasses = {
     sm: {
       container: "h-8",
@@ -42,15 +43,15 @@ export default function RHSLogo({ variant = "default", size = "md", theme = "blu
   // Dynamic text colors based on background
   const textColors = onDark
     ? {
-        primary: "text-white",
-        secondary: "text-gray-300",
-        tertiary: "text-gray-400",
-      }
+      primary: "text-white",
+      secondary: "text-gray-300",
+      tertiary: "text-gray-400",
+    }
     : {
-        primary: "text-gray-900",
-        secondary: "text-gray-600",
-        tertiary: "text-gray-500",
-      }
+      primary: "text-gray-900",
+      secondary: "text-gray-600",
+      tertiary: "text-gray-500",
+    }
 
   if (variant === "icon-only") {
     return (
@@ -86,7 +87,7 @@ export default function RHSLogo({ variant = "default", size = "md", theme = "blu
         </div>
         <div>
           <h1 className={`${classes.text} font-bold leading-tight ${textColors.primary}`}>RHS</h1>
-          <p className={`${classes.subtext} leading-tight ${textColors.secondary}`}>Waidhan, Singrauli</p>
+          {add&&<p className={`${classes.subtext} leading-tight ${textColors.secondary}`}>Waidhan, Singrauli</p>}
           <p className={`text-xs leading-tight ${textColors.tertiary} italic`}>We Serve Society By Serving People</p>
         </div>
       </div>
@@ -109,8 +110,7 @@ export default function RHSLogo({ variant = "default", size = "md", theme = "blu
       </div>
       <div>
         <h1 className={`${classes.text} font-bold leading-tight ${textColors.primary}`}>Ravindra High School</h1>
-        <p className={`${classes.subtext} leading-tight ${textColors.secondary}`}>Waidhan, Singrauli</p>
-        <p className={`text-xs leading-tight ${textColors.tertiary} italic`}>We Serve Society By Serving People</p>
+        {add && <p className={`${classes.subtext} leading-tight ${textColors.secondary}`}>Waidhan, Singrauli</p>}        <p className={`text-xs leading-tight ${textColors.tertiary} italic`}>We Serve Society By Serving People</p>
       </div>
     </div>
   )
