@@ -4,4 +4,7 @@ module.exports = {
   siteUrl: 'https://rhswaidhan.com',
   generateRobotsTxt: true,
   sitemapSize: 5000,
+  robotsTxtOptions: {
+    additionalSitemaps: ['https://rhswaidhan.com/sitemap.xml'],
+  }
 }
