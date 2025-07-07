@@ -58,7 +58,7 @@ export default function RHSLogo({ variant = "default", size = "md", theme = "blu
       <div className={`${classes.container} aspect-square relative`}>
         <div className="bg-white rounded-lg p-1 shadow-sm">
           <Image
-            src="/images/rhs-logo.png"
+            src="/images/rhs-logo.webp"
             alt="Ravindra High School Logo"
             width={classes.logo}
             height={classes.logo}
@@ -76,7 +76,7 @@ export default function RHSLogo({ variant = "default", size = "md", theme = "blu
         <div className={`${classes.container} aspect-square relative`}>
           <div className="bg-white rounded-lg p-1 shadow-sm">
             <Image
-              src="/images/rhs-logo.png"
+              src="/images/rhs-logo.webp"
               alt="Ravindra High School Logo"
               width={classes.logo}
               height={classes.logo}
@@ -99,7 +99,7 @@ export default function RHSLogo({ variant = "default", size = "md", theme = "blu
       <div className={`${classes.container} aspect-square relative`}>
         <div className="bg-white rounded-lg p-1 shadow-sm">
           <Image
-            src="/images/rhs-logo.png"
+            src="/images/rhs-logo.webp"
             alt="Ravindra High School Logo - We Serve Society By Serving People"
             width={classes.logo}
             height={classes.logo}

@@ -110,12 +110,12 @@ export default function GalleryPage() {
               Schedule a visit to experience our facilities and campus environment in person.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
+              {/* <Button
                 size="lg"
                 className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
               >
                 Schedule Campus Visit
-              </Button>
+              </Button> */}
               <Link href="/#contact">
                 <Button
                   variant="outline"
