@@ -29,5 +29,5 @@ next-env.d.ts
 .next-sitemap
 # next-sitemap generated files
 public/sitemap.xml
-public/robots.txt
+# public/robots.txt
 public/sitemap-*.xml
