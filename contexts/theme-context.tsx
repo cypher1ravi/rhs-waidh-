@@ -4,17 +4,14 @@ import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 
 type Theme = "blue" | "green" | "purple" | "orange" | "red"
-type Font = "nunito"
 type Layout = "modern" | "classic" | "minimal" | "vibrant"
 type LogoStyle = "default" | "compact" | "icon-only"
 
 interface ThemeContextType {
   theme: Theme
-  font: Font
   layout: Layout
   logoStyle: LogoStyle
   setTheme: (theme: Theme) => void
-  setFont: (font: Font) => void
   setLayout: (layout: Layout) => void
   setLogoStyle: (logoStyle: LogoStyle) => void
   getThemeClasses: () => {
@@ -22,7 +19,6 @@ interface ThemeContextType {
     primary: string
     secondary: string
   }
-  getFontClass: () => string
   getLayoutClasses: () => {
     heroBackground: string
     cardStyle: string
@@ -61,10 +57,6 @@ const themeConfig = {
   },
 }
 
-const fontConfig = {
-  nunito: "font-nunito",
-}
-
 const layoutConfig = {
   modern: {
     heroBackground: "bg-gradient-to-br from-blue-50 to-indigo-100",
@@ -94,7 +86,6 @@ const layoutConfig = {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("blue")
-  const [font] = useState<Font>("nunito")
   const [layout, setLayout] = useState<Layout>("modern")
   const [logoStyle, setLogoStyle] = useState<LogoStyle>("default")
 
@@ -132,26 +123,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }  
 
   const getThemeClasses = () => themeConfig[theme]
-  const getFontClass = () => fontConfig[font]
   const getLayoutClasses = () => layoutConfig[layout]
 
   return (
     <ThemeContext.Provider
       value={{
         theme,
-        font,
         layout,
         logoStyle,
         setTheme: handleSetTheme,
-        setFont: () => {}, // No-op since font is fixed
         setLayout: handleSetLayout,
         setLogoStyle: handleSetLogoStyle,
         getThemeClasses,
-        getFontClass,
         getLayoutClasses,
       }}
     >
-      <div className={getFontClass()}>{children}</div>
+      <div className="font-nunito">{children}</div>
     </ThemeContext.Provider>
   )
 }
