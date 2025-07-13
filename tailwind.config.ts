@@ -20,11 +20,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        poppins: ["var(--font-poppins)", "sans-serif"],
-        playfair: ["var(--font-playfair)", "serif"],
-        roboto: ["var(--font-roboto)", "sans-serif"],
-        montserrat: ["var(--font-montserrat)", "sans-serif"],
         nunito: ["var(--font-nunito)", "sans-serif"],
+        sans: ["var(--font-nunito)", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

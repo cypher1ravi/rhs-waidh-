@@ -4,7 +4,7 @@ import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 
 type Theme = "blue" | "green" | "purple" | "orange" | "red"
-type Font = "inter" | "poppins" | "playfair" | "roboto" | "montserrat"|"nunito"
+type Font = "nunito"
 type Layout = "modern" | "classic" | "minimal" | "vibrant"
 type LogoStyle = "default" | "compact" | "icon-only"
 
@@ -62,11 +62,6 @@ const themeConfig = {
 }
 
 const fontConfig = {
-  inter: "font-sans",
-  poppins: "font-poppins",
-  playfair: "font-playfair",
-  roboto: "font-roboto",
-  montserrat: "font-montserrat",
   nunito: "font-nunito",
 }
 
@@ -99,22 +94,18 @@ const layoutConfig = {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("blue")
-  const [font, setFont] = useState<Font>("nunito")
+  const [font] = useState<Font>("nunito")
   const [layout, setLayout] = useState<Layout>("modern")
   const [logoStyle, setLogoStyle] = useState<LogoStyle>("default")
 
   // Load saved preferences from localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem("rhs-theme") as Theme
-    const savedFont = localStorage.getItem("rhs-font") as Font
     const savedLayout = localStorage.getItem("rhs-layout") as Layout
     const savedLogoStyle = localStorage.getItem("rhs-logo-style") as LogoStyle
 
     if (savedTheme && themeConfig[savedTheme]) {
       setTheme(savedTheme)
-    }
-    if (savedFont && fontConfig[savedFont]) {
-      setFont(savedFont)
     }
     if (savedLayout && layoutConfig[savedLayout]) {
       setLayout(savedLayout)
@@ -128,11 +119,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const handleSetTheme = (newTheme: Theme) => {
     setTheme(newTheme)
     localStorage.setItem("rhs-theme", newTheme)
-  }
-
-  const handleSetFont = (newFont: Font) => {
-    setFont(newFont)
-    localStorage.setItem("rhs-font", newFont)
   }
 
   const handleSetLayout = (newLayout: Layout) => {
@@ -157,7 +143,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         layout,
         logoStyle,
         setTheme: handleSetTheme,
-        setFont: handleSetFont,
+        setFont: () => {}, // No-op since font is fixed
         setLayout: handleSetLayout,
         setLogoStyle: handleSetLogoStyle,
         getThemeClasses,

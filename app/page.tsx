@@ -170,7 +170,7 @@ export default function HomePage() {
             
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
               Welcome to{" "}
-              <span className={`text-transparent bg-clip-text bg-gradient-to-r ${themeClasses.gradient} animate-pulse`}>
+              <span className={`text-transparent bg-clip-text bg-gradient-to-r ${themeClasses.gradient}`}>
                 Ravindra High School
               </span>
             </h1>

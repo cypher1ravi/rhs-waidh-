@@ -11,11 +11,9 @@ import { useState } from "react"
 export default function ThemeSelector() {
   const {
     theme,
-    font,
     layout,
     logoStyle,
     setTheme,
-    setFont,
     setLayout,
     setLogoStyle,
     getThemeClasses,
@@ -64,46 +62,6 @@ export default function ThemeSelector() {
       primary: "#dc2626",
       secondary: "#e11d48",
     },
-  ]
-
-  const fonts = [
-    { id: "inter" as const, name: "Inter", class: "font-sans", description: "Modern and clean", preview: "Inter Font" },
-    {
-      id: "poppins" as const,
-      name: "Poppins",
-      class: "font-poppins",
-      description: "Friendly and approachable",
-      preview: "Poppins Font",
-    },
-    {
-      id: "playfair" as const,
-      name: "Playfair Display",
-      class: "font-playfair",
-      description: "Elegant and sophisticated",
-      preview: "Playfair Font",
-    },
-    {
-      id: "roboto" as const,
-      name: "Roboto",
-      class: "font-roboto",
-      description: "Professional and readable",
-      preview: "Roboto Font",
-    },
-    {
-      id: "montserrat" as const,
-      name: "Montserrat",
-      class: "font-montserrat",
-      description: "Contemporary and versatile",
-      preview: "Montserrat Font",
-    },
-    {
-      id: "nunito" as const,
-      name: "Nunito",
-      class: "font-nunito",
-      description: "Contemporary and versatile",
-      preview: "Nunito Font",
-    },
-    
   ]
 
   const layouts = [
@@ -155,7 +113,6 @@ export default function ThemeSelector() {
   ]
 
   const selectedThemeData = themes.find((t) => t.id === theme)
-  const selectedFontData = fonts.find((f) => f.id === font)
   const selectedLayoutData = layouts.find((l) => l.id === layout)
   const selectedLogoData = logoStyles.find((l) => l.id === logoStyle)
   const layoutClasses = getLayoutClasses()
@@ -170,8 +127,8 @@ export default function ThemeSelector() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">RHS Brand Identity Options</h1>
-            <p className="text-xl text-gray-600">Choose your preferred logo style, theme, and typography</p>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">RHS Theme Customization</h1>
+            <p className="text-xl text-gray-600">Customize your preferred logo style, color theme, and layout</p>
             {showSaveMessage && (
               <div className="mt-4 p-3 bg-green-100 text-green-800 rounded-lg inline-block">
                 <div className="flex items-center space-x-2">
@@ -303,41 +260,6 @@ export default function ThemeSelector() {
             </CardContent>
           </Card>
 
-          {/* Font Selection */}
-          <Card className="mb-12">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Type className="w-5 h-5" />
-                <span>Typography Options</span>
-              </CardTitle>
-              <CardDescription>Choose your preferred font family (changes apply instantly)</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-5 gap-4">
-                {fonts.map((fontOption) => (
-                  <div
-                    key={fontOption.id}
-                    className={`p-4 rounded-lg border-2 cursor-pointer transition-all hover:shadow-md ${
-                      font === fontOption.id
-                        ? "border-blue-500 bg-blue-50 shadow-md"
-                        : "border-gray-200 hover:border-gray-300"
-                    }`}
-                    onClick={() => setFont(fontOption.id)}
-                  >
-                    <div className={`${fontOption.class} mb-3`}>
-                      <h3 className="text-2xl font-bold mb-1">Aa</h3>
-                      <p className="text-sm">{fontOption.preview}</p>
-                      <p className="text-xs mt-1">The quick brown fox</p>
-                    </div>
-                    <h4 className="font-semibold text-sm mb-1">{fontOption.name}</h4>
-                    <p className="text-xs text-gray-600">{fontOption.description}</p>
-                    {font === fontOption.id && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Active</Badge>}
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Layout Styles */}
           <Card className="mb-12">
             <CardHeader>
@@ -437,7 +359,7 @@ export default function ThemeSelector() {
                     </nav>
                   </div>
 
-                  <div className={`${selectedFontData?.class} text-center`}>
+                  <div className="font-nunito text-center">
                     <h1 className="text-4xl font-bold mb-4">Welcome to Ravindra High School</h1>
                     <p className="text-xl opacity-90 mb-6">
                       We Serve Society By Serving People • Classes I-X • Waidhan
@@ -455,21 +377,16 @@ export default function ThemeSelector() {
           <Card>
             <CardHeader>
               <CardTitle>Current Selection</CardTitle>
-              <CardDescription>Your theme preferences are automatically saved</CardDescription>
+              <CardDescription>Your customization preferences are automatically saved</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-4 gap-6 mb-6">
+              <div className="grid md:grid-cols-3 gap-6 mb-6">
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <h3 className="font-semibold mb-2">Color Theme</h3>
                   <div
                     className={`w-12 h-12 bg-gradient-to-r ${selectedThemeData?.colors} rounded-full mx-auto mb-2`}
                   ></div>
                   <p className="text-sm text-gray-600">{selectedThemeData?.name}</p>
-                </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold mb-2">Typography</h3>
-                  <div className={`${selectedFontData?.class} text-2xl font-bold mb-2`}>Aa</div>
-                  <p className="text-sm text-gray-600">{selectedFontData?.name}</p>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <h3 className="font-semibold mb-2">Layout Style</h3>
@@ -495,7 +412,7 @@ export default function ThemeSelector() {
                   Save Current Theme
                 </Button>
                 <p className="text-sm text-gray-600 mt-3">
-                  Changes are applied instantly and saved automatically to your browser
+                  Changes are applied instantly and saved automatically to your browser. Using optimized Nunito font for best performance.
                 </p>
               </div>
             </CardContent>

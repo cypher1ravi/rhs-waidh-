@@ -8,18 +8,12 @@ import { ArrowLeft } from "lucide-react"
 
 export default function ThemesPage() {
   const [currentTheme, setCurrentTheme] = useState("blue")
-  const [currentFont, setCurrentFont] = useState("inter")
   const [currentLayout, setCurrentLayout] = useState("modern")
 
   const handleThemeChange = (theme: string) => {
     setCurrentTheme(theme)
     // Here you would typically update a global state or context
     console.log("Theme changed to:", theme)
-  }
-
-  const handleFontChange = (font: string) => {
-    setCurrentFont(font)
-    console.log("Font changed to:", font)
   }
 
   const handleLayoutChange = (layout: string) => {
@@ -40,7 +34,6 @@ export default function ThemesPage() {
 
       <ThemeSelector
         onThemeChange={handleThemeChange}
-        onFontChange={handleFontChange}
         onLayoutChange={handleLayoutChange}
       />
     </div>

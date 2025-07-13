@@ -1,29 +1,30 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Poppins, Playfair_Display, Roboto, Montserrat, Nunito } from "next/font/google"
+import { Nunito } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/contexts/theme-context"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Suspense } from "react"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-poppins" })
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
-const roboto = Roboto({ subsets: ["latin"], weight: ["300", "400", "500", "700"], variable: "--font-roboto" })
-const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" })
-const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
+const nunito = Nunito({ 
+  subsets: ["latin"], 
+  variable: "--font-nunito",
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  preload: true
+})
 
 export const metadata: Metadata = {
-  title: "Ravindra High School - Excellence in Education | Waidhan, Singrauli",
+  title: "Ravindra High School - Excellence in Education | Waidhan, Singrauli | NCERT Curriculum",
   description:
-    "Providing quality education with modern facilities, experienced faculty, and holistic development for students from primary to high school levels (Classes I-X) following NCERT curriculum.",
-  keywords: "Ravindra High School, RHS,rhswaidhan, Waidhan, Singrauli, school, education, admission, NCERT, Madhya Pradesh ",
+    "Ravindra High School offers quality education with modern facilities, experienced faculty, and holistic development for Classes I-X following NCERT curriculum in Waidhan, Singrauli, Madhya Pradesh.",
+  keywords: "Ravindra High School, RHS, rhswaidhan, Waidhan, Singrauli, school, education, admission, NCERT, Madhya Pradesh, Classes I-X, quality education, modern facilities",
   authors: [{ name: "Ravindra High School" }],
   openGraph: {
-    title: "Ravindra High School - Excellence in Education",
+    title: "Ravindra High School - Excellence in Education | Waidhan, Singrauli",
     description:
-      "Quality education in Waidhan, Singrauli with modern facilities and experienced faculty following NCERT curriculum.",
+      "Quality education in Waidhan, Singrauli with modern facilities and experienced faculty following NCERT curriculum for Classes I-X.",
     type: "website",
     locale: "en_IN",
     url: "https://rhswaidhan.com",
@@ -51,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${poppins.variable} ${playfair.variable} ${roboto.variable} ${montserrat.variable} ${nunito.variable}`}
+        className={nunito.variable}
       >
         <ThemeProvider>
           <Suspense fallback={null}>
