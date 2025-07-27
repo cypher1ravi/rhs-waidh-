@@ -4,25 +4,18 @@ import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 
 type Theme = "blue" | "green" | "purple" | "orange" | "red"
-type Font = "inter" | "poppins" | "playfair" | "roboto" | "montserrat"|"nunito"
 type Layout = "modern" | "classic" | "minimal" | "vibrant"
-type LogoStyle = "default" | "compact" | "icon-only"
 
 interface ThemeContextType {
   theme: Theme
-  font: Font
   layout: Layout
-  logoStyle: LogoStyle
   setTheme: (theme: Theme) => void
-  setFont: (font: Font) => void
   setLayout: (layout: Layout) => void
-  setLogoStyle: (logoStyle: LogoStyle) => void
   getThemeClasses: () => {
     gradient: string
     primary: string
     secondary: string
   }
-  getFontClass: () => string
   getLayoutClasses: () => {
     heroBackground: string
     cardStyle: string
@@ -61,15 +54,6 @@ const themeConfig = {
   },
 }
 
-const fontConfig = {
-  inter: "font-sans",
-  poppins: "font-poppins",
-  playfair: "font-playfair",
-  roboto: "font-roboto",
-  montserrat: "font-montserrat",
-  nunito: "font-nunito",
-}
-
 const layoutConfig = {
   modern: {
     heroBackground: "bg-gradient-to-br from-blue-50 to-indigo-100",
@@ -97,30 +81,26 @@ const layoutConfig = {
   },
 }
 
+const getRandomTheme = (): Theme => {
+  const themes: Theme[] = ["blue", "green", "purple", "orange", "red"]
+  return themes[Math.floor(Math.random() * themes.length)]
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("blue")
-  const [font, setFont] = useState<Font>("nunito")
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("rhs-theme") as Theme) || getRandomTheme()
+    }
+    return getRandomTheme()
+  })
   const [layout, setLayout] = useState<Layout>("modern")
-  const [logoStyle, setLogoStyle] = useState<LogoStyle>("default")
 
   // Load saved preferences from localStorage
   useEffect(() => {
-    const savedTheme = localStorage.getItem("rhs-theme") as Theme
-    const savedFont = localStorage.getItem("rhs-font") as Font
     const savedLayout = localStorage.getItem("rhs-layout") as Layout
-    const savedLogoStyle = localStorage.getItem("rhs-logo-style") as LogoStyle
 
-    if (savedTheme && themeConfig[savedTheme]) {
-      setTheme(savedTheme)
-    }
-    if (savedFont && fontConfig[savedFont]) {
-      setFont(savedFont)
-    }
     if (savedLayout && layoutConfig[savedLayout]) {
       setLayout(savedLayout)
-    }
-    if (savedLogoStyle) {
-      setLogoStyle(savedLogoStyle)
     }
   }, [])
 
@@ -130,42 +110,26 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("rhs-theme", newTheme)
   }
 
-  const handleSetFont = (newFont: Font) => {
-    setFont(newFont)
-    localStorage.setItem("rhs-font", newFont)
-  }
-
   const handleSetLayout = (newLayout: Layout) => {
     setLayout(newLayout)
     localStorage.setItem("rhs-layout", newLayout)
   }
 
-  const handleSetLogoStyle = (newLogoStyle: LogoStyle) => {
-    setLogoStyle(newLogoStyle)
-    localStorage.setItem("rhs-logo-style", newLogoStyle)
-  }  
-
   const getThemeClasses = () => themeConfig[theme]
-  const getFontClass = () => fontConfig[font]
   const getLayoutClasses = () => layoutConfig[layout]
 
   return (
     <ThemeContext.Provider
       value={{
         theme,
-        font,
         layout,
-        logoStyle,
         setTheme: handleSetTheme,
-        setFont: handleSetFont,
         setLayout: handleSetLayout,
-        setLogoStyle: handleSetLogoStyle,
         getThemeClasses,
-        getFontClass,
         getLayoutClasses,
       }}
     >
-      <div className={getFontClass()}>{children}</div>
+      <div className="font-nunito">{children}</div>
     </ThemeContext.Provider>
   )
 }

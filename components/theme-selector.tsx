@@ -3,25 +3,18 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import RHSLogo from "./logo"
-import { Palette, Type, Layout, Check, Save, ImageIcon } from "lucide-react"
+import { Palette, Layout, Check, Save } from "lucide-react"
 import { useTheme } from "@/contexts/theme-context"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function ThemeSelector() {
-  const {
-    theme,
-    font,
-    layout,
-    logoStyle,
-    setTheme,
-    setFont,
-    setLayout,
-    setLogoStyle,
-    getThemeClasses,
-    getLayoutClasses,
-  } = useTheme()
+  const { theme, layout, setTheme, setLayout, getThemeClasses, getLayoutClasses } = useTheme()
   const [showSaveMessage, setShowSaveMessage] = useState(false)
+
+  useEffect(() => {
+    const randomTheme = themes[Math.floor(Math.random() * themes.length)].id
+    setTheme(randomTheme)
+  }, [])
 
   const themes = [
     {
@@ -66,46 +59,6 @@ export default function ThemeSelector() {
     },
   ]
 
-  const fonts = [
-    { id: "inter" as const, name: "Inter", class: "font-sans", description: "Modern and clean", preview: "Inter Font" },
-    {
-      id: "poppins" as const,
-      name: "Poppins",
-      class: "font-poppins",
-      description: "Friendly and approachable",
-      preview: "Poppins Font",
-    },
-    {
-      id: "playfair" as const,
-      name: "Playfair Display",
-      class: "font-playfair",
-      description: "Elegant and sophisticated",
-      preview: "Playfair Font",
-    },
-    {
-      id: "roboto" as const,
-      name: "Roboto",
-      class: "font-roboto",
-      description: "Professional and readable",
-      preview: "Roboto Font",
-    },
-    {
-      id: "montserrat" as const,
-      name: "Montserrat",
-      class: "font-montserrat",
-      description: "Contemporary and versatile",
-      preview: "Montserrat Font",
-    },
-    {
-      id: "nunito" as const,
-      name: "Nunito",
-      class: "font-nunito",
-      description: "Contemporary and versatile",
-      preview: "Nunito Font",
-    },
-    
-  ]
-
   const layouts = [
     {
       id: "modern" as const,
@@ -133,31 +86,8 @@ export default function ThemeSelector() {
     },
   ]
 
-  const logoStyles = [
-    {
-      id: "default" as const,
-      name: "Full Logo",
-      description: "Complete logo with school name",
-      usage: "Headers, main branding",
-    },
-    {
-      id: "compact" as const,
-      name: "Compact Logo",
-      description: "Logo with abbreviated text",
-      usage: "Navigation, small spaces",
-    },
-    {
-      id: "icon-only" as const,
-      name: "Icon Only",
-      description: "Just the school emblem",
-      usage: "Favicons, mobile apps",
-    },
-  ]
-
   const selectedThemeData = themes.find((t) => t.id === theme)
-  const selectedFontData = fonts.find((f) => f.id === font)
   const selectedLayoutData = layouts.find((l) => l.id === layout)
-  const selectedLogoData = logoStyles.find((l) => l.id === logoStyle)
   const layoutClasses = getLayoutClasses()
 
   const handleApplyTheme = () => {
@@ -181,76 +111,6 @@ export default function ThemeSelector() {
               </div>
             )}
           </div>
-
-          {/* Logo Variations - NOW WITH REAL LOGO */}
-          <Card className="mb-12">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <ImageIcon className="w-5 h-5" />
-                <span>Official Logo Variations (Click to Apply)</span>
-              </CardTitle>
-              <CardDescription>Choose which logo style to use throughout the website</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-3 gap-8">
-                {logoStyles.map((logoOption) => (
-                  <div
-                    key={logoOption.id}
-                    className={`text-center p-6 rounded-lg border-2 cursor-pointer transition-all hover:shadow-md ${
-                      logoStyle === logoOption.id
-                        ? "border-blue-500 bg-blue-50 shadow-md"
-                        : "border-gray-200 hover:border-gray-300"
-                    }`}
-                    onClick={() => setLogoStyle(logoOption.id)}
-                  >
-                    <div className="mb-4 flex justify-center">
-                      <RHSLogo variant={logoOption.id} size="lg" theme={theme} onDark={false} />
-                    </div>
-                    <h3 className="font-semibold mb-2">{logoOption.name}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{logoOption.description}</p>
-                    <p className="text-xs text-gray-500">{logoOption.usage}</p>
-                    {logoStyle === logoOption.id && (
-                      <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Active</Badge>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 p-6 bg-green-50 rounded-lg">
-                <h4 className="font-semibold text-gray-900 mb-3">Official Logo Symbolism</h4>
-                <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg">📖</span>
-                    <span>
-                      <strong>Open Book:</strong> Knowledge and learning
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg">🪔</span>
-                    <span>
-                      <strong>Diya (Lamp):</strong> Enlightenment and wisdom
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg">🛡️</span>
-                    <span>
-                      <strong>Shield Shape:</strong> Protection and strength
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg">🏛️</span>
-                    <span>
-                      <strong>Traditional Design:</strong> Heritage and values
-                    </span>
-                  </div>
-                </div>
-                <div className="mt-4 p-3 bg-white rounded border-l-4 border-green-500">
-                  <p className="text-sm font-medium text-gray-800">School Motto:</p>
-                  <p className="text-sm text-gray-600 italic">"We Serve Society By Serving People"</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
 
           {/* Theme Selection */}
           <Card className="mb-12">
@@ -297,41 +157,6 @@ export default function ThemeSelector() {
                     {theme === themeOption.id && (
                       <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Active</Badge>
                     )}
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Font Selection */}
-          <Card className="mb-12">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Type className="w-5 h-5" />
-                <span>Typography Options</span>
-              </CardTitle>
-              <CardDescription>Choose your preferred font family (changes apply instantly)</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-5 gap-4">
-                {fonts.map((fontOption) => (
-                  <div
-                    key={fontOption.id}
-                    className={`p-4 rounded-lg border-2 cursor-pointer transition-all hover:shadow-md ${
-                      font === fontOption.id
-                        ? "border-blue-500 bg-blue-50 shadow-md"
-                        : "border-gray-200 hover:border-gray-300"
-                    }`}
-                    onClick={() => setFont(fontOption.id)}
-                  >
-                    <div className={`${fontOption.class} mb-3`}>
-                      <h3 className="text-2xl font-bold mb-1">Aa</h3>
-                      <p className="text-sm">{fontOption.preview}</p>
-                      <p className="text-xs mt-1">The quick brown fox</p>
-                    </div>
-                    <h4 className="font-semibold text-sm mb-1">{fontOption.name}</h4>
-                    <p className="text-xs text-gray-600">{fontOption.description}</p>
-                    {font === fontOption.id && <Badge className="mt-2 bg-blue-100 text-blue-800 text-xs">Active</Badge>}
                   </div>
                 ))}
               </div>
@@ -420,7 +245,6 @@ export default function ThemeSelector() {
                 <div className="absolute inset-0 bg-black/10"></div>
                 <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 relative z-10">
                   <div className="flex items-center justify-between mb-6">
-                    <RHSLogo variant={logoStyle} size="md" theme={theme} onDark={true} />
                     <nav className="hidden md:flex space-x-6 text-white">
                       <a href="#" className="hover:text-white/80 transition-colors">
                         Home
@@ -437,7 +261,7 @@ export default function ThemeSelector() {
                     </nav>
                   </div>
 
-                  <div className={`${selectedFontData?.class} text-center`}>
+                  <div className={`text-center`}>
                     <h1 className="text-4xl font-bold mb-4">Welcome to Ravindra High School</h1>
                     <p className="text-xl opacity-90 mb-6">
                       We Serve Society By Serving People • Classes I-X • Waidhan
@@ -458,7 +282,7 @@ export default function ThemeSelector() {
               <CardDescription>Your theme preferences are automatically saved</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-4 gap-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <h3 className="font-semibold mb-2">Color Theme</h3>
                   <div
@@ -467,21 +291,9 @@ export default function ThemeSelector() {
                   <p className="text-sm text-gray-600">{selectedThemeData?.name}</p>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold mb-2">Typography</h3>
-                  <div className={`${selectedFontData?.class} text-2xl font-bold mb-2`}>Aa</div>
-                  <p className="text-sm text-gray-600">{selectedFontData?.name}</p>
-                </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <h3 className="font-semibold mb-2">Layout Style</h3>
                   <div className="w-12 h-8 bg-gray-300 rounded mx-auto mb-2"></div>
                   <p className="text-sm text-gray-600">{selectedLayoutData?.name}</p>
-                </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-semibold mb-2">Logo Style</h3>
-                  <div className="mb-2 flex justify-center">
-                    <RHSLogo variant={logoStyle} size="sm" theme={theme} onDark={false} />
-                  </div>
-                  <p className="text-sm text-gray-600">{selectedLogoData?.name}</p>
                 </div>
               </div>
 

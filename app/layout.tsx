@@ -41,6 +41,7 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   alternates: { canonical: 'https://rhswaidhan.com/' },
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
