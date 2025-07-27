@@ -162,6 +162,11 @@ const config: Config = {
     "hover:bg-purple-600/5",
     "hover:bg-orange-600/5",
     "hover:bg-red-600/5",
+    "hover:text-blue-600",
+    "hover:text-green-600",
+    "hover:text-purple-600",
+    "hover:text-orange-600",
+    "hover:text-red-600",
     // Font families
     "font-sans",
     "font-poppins",

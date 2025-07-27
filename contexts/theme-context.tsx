@@ -85,6 +85,10 @@ const getRandomTheme = (): Theme => {
   const themes: Theme[] = ["blue", "green", "purple", "orange", "red"]
   return themes[Math.floor(Math.random() * themes.length)]
 }
+const getRandomLayout = (): Layout => {
+  const layouts: Layout[] = ["modern", "classic", "minimal", "vibrant"]
+  return layouts[Math.floor(Math.random() * layouts.length)]
+}
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -93,7 +97,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
     return getRandomTheme()
   })
-  const [layout, setLayout] = useState<Layout>("modern")
+  const [layout, setLayout] = useState<Layout>(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("rhs-layout") as Layout) || getRandomLayout()
+    }
+    return getRandomLayout()
+  })
 
   // Load saved preferences from localStorage
   useEffect(() => {

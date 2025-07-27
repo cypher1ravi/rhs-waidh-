@@ -28,9 +28,19 @@ import StudentPortalSection from "@/components/student-portal-section"
 
 export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { theme, logoStyle, getThemeClasses, getLayoutClasses } = useTheme()
+  const { theme, getThemeClasses, getLayoutClasses } = useTheme()
   const themeClasses = getThemeClasses()
   const layoutClasses = getLayoutClasses()
+
+  const navLinks = [
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#academics", label: "Academics" },
+    { href: "#portal", label: "Portal" },
+    { href: "#admissions", label: "Admissions" },
+    { href: "#contact", label: "Contact" },
+  ]
+  const linkClasses = `text-gray-700 hover:text-${themeClasses.primary} font-medium transition-colors`
 
   return (
     <div className={`min-h-screen ${layoutClasses.heroBackground}`}>
@@ -53,29 +63,16 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <RHSLogo variant={logoStyle} size="md" theme={theme} onDark={false} add={false} />
+              <RHSLogo variant={"default"} size="md" theme={theme} onDark={false} add={false} />
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
-              <Link href="#home" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Home
-              </Link>
-              <Link href="#about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                About
-              </Link>
-              <Link href="#academics" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Academics
-              </Link>
-              <Link href="#portal" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Portal
-              </Link>
-              <Link href="#admissions" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Admissions
-              </Link>
-              <Link href="#contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Contact
-              </Link>
+              {navLinks.map((link) => (
+                <Link key={link.href} href={link.href} className={linkClasses}>
+                  {link.label}
+                </Link>
+              ))}
             </nav>
 
             {/* Mobile Menu Button */}
@@ -92,48 +89,16 @@ export default function HomePage() {
           {isMobileMenuOpen && (
             <nav className="md:hidden mt-4 pb-4 border-t border-gray-200">
               <div className="flex flex-col space-y-3 pt-4">
-                <Link
-                  href="#home"
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="#about"
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  About
-                </Link>
-                <Link
-                  href="#academics"
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Academics
-                </Link>
-                <Link
-                  href="#portal"
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Portal
-                </Link>
-                <Link
-                  href="#admissions"
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Admissions
-                </Link>
-                <Link
-                  href="#contact"
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Contact
-                </Link>
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={linkClasses}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             </nav>
           )}
@@ -165,14 +130,14 @@ export default function HomePage() {
               >
                 Apply for Admission
               </Button> */}
-                <Button
+              <Button
                 variant="outline"
                 size="lg"
                 className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
                 onClick={() => window.location.href = "/gallery"}
-                >
+              >
                 Virtual Tour
-                </Button>
+              </Button>
             </div>
           </div>
         </div>
@@ -428,7 +393,7 @@ export default function HomePage() {
             </div>
 
             {/* Call to Action */}
-            <div className="flex flex-col items-center space-y-4">
+            {/* <div className="flex flex-col items-center space-y-4">
               <Button
                 size="lg"
                 className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
@@ -439,7 +404,7 @@ export default function HomePage() {
               <p className="text-sm text-gray-500">
                 For assistance, contact the school office or visit our campus.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -542,7 +507,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="md:col-span-2">
                 <div className="mb-4">
-                  <RHSLogo variant={logoStyle} size="md" theme={theme} onDark={true} />
+                  <RHSLogo variant={"default"} size="md" theme={theme} onDark={true} />
                 </div>
                 <p className="opacity-90 mb-4">
                   Dedicated to delivering quality education and nurturing young minds for a brighter future in Waidhan, Singrauli.
