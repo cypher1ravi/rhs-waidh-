@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://rhswaidhan.vercel.app",
-  generateRobotsTxt: true,
+  siteUrl: process.env.SITE_URL || "https://rhswaidhan.com",
+  generateRobotsTxt: false,
   sitemapSize: 7000,
   changefreq: "weekly",
   priority: 0.7,
