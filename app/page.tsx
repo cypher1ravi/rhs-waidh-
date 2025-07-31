@@ -1,5 +1,6 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -17,7 +18,6 @@ import {
   MapPin,
   Phone,
   Mail,
-  Download,
   Presentation,
   NotebookPen,
 } from "lucide-react"
@@ -31,16 +31,48 @@ export default function HomePage() {
   const { theme, getThemeClasses, getLayoutClasses } = useTheme()
   const themeClasses = getThemeClasses()
   const layoutClasses = getLayoutClasses()
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
+  // Handle section navigation
+  useEffect(() => {
+    const section = searchParams.get("section")
+    if (section) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.getElementById(section)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }, 100)
+    }
+  }, [searchParams])
+
+  const handleNavigation = (sectionId: string, route: string) => {
+    setIsMobileMenuOpen(false)
+
+    // Update URL without page reload
+    router.push(route, { scroll: false })
+
+    // Scroll to section
+    setTimeout(() => {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
+    }, 100)
+  }
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#academics", label: "Academics" },
-    { href: "#portal", label: "Portal" },
-    { href: "#admissions", label: "Admissions" },
-    { href: "#contact", label: "Contact" },
+    { href: "/home", label: "Home", sectionId: "home" },
+    { href: "/about", label: "About", sectionId: "about" },
+    { href: "/academics", label: "Academics", sectionId: "academics" },
+    { href: "/portal", label: "Portal", sectionId: "portal" },
+    { href: "/admissions", label: "Admissions", sectionId: "admissions" },
+    { href: "/contact", label: "Contact", sectionId: "contact" },
   ]
-  const linkClasses = `text-gray-700 hover:text-${themeClasses.primary} font-medium transition-colors`
+
+  const linkClasses = `text-gray-700 hover:text-${themeClasses.primary} font-medium transition-colors cursor-pointer`
 
   return (
     <div className={`min-h-screen ${layoutClasses.heroBackground}`}>
@@ -69,9 +101,13 @@ export default function HomePage() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className={linkClasses}>
+                <span
+                  key={link.href}
+                  onClick={() => handleNavigation(link.sectionId, `/?section=${link.sectionId}`)}
+                  className={linkClasses}
+                >
                   {link.label}
-                </Link>
+                </span>
               ))}
             </nav>
 
@@ -90,14 +126,13 @@ export default function HomePage() {
             <nav className="md:hidden mt-4 pb-4 border-t border-gray-200">
               <div className="flex flex-col space-y-3 pt-4">
                 {navLinks.map((link) => (
-                  <Link
+                  <span
                     key={link.href}
-                    href={link.href}
+                    onClick={() => handleNavigation(link.sectionId, `/?section=${link.sectionId}`)}
                     className={linkClasses}
-                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
-                  </Link>
+                  </span>
                 ))}
               </div>
             </nav>
@@ -121,20 +156,17 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Since 1988, Ravindra High School has been shaping the future of Waidhan, Singrauli with a commitment to quality education, strong values, and personal attention. From Classes I to X, our NCERT-based curriculum, dedicated faculty, and modern learning environment ensure every child grows with confidence, curiosity, and character.
+              Since 1988, Ravindra High School has been shaping the future of Waidhan, Singrauli with a commitment to
+              quality education, strong values, and personal attention. From Classes I to X, our NCERT-based curriculum,
+              dedicated faculty, and modern learning environment ensure every child grows with confidence, curiosity,
+              and character.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {/* <Button
-                size="lg"
-                className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
-              >
-                Apply for Admission
-              </Button> */}
               <Button
                 variant="outline"
                 size="lg"
                 className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
-                onClick={() => window.location.href = "/gallery"}
+                onClick={() => (window.location.href = "/gallery")}
               >
                 Virtual Tour
               </Button>
@@ -347,7 +379,9 @@ export default function HomePage() {
       </section>
 
       {/* Student Portal Section */}
-      <StudentPortalSection />
+      <section id="portal">
+        <StudentPortalSection />
+      </section>
 
       {/* Admissions Section */}
       <section id="admissions" className={`${layoutClasses.sectionSpacing} bg-white`}>
@@ -391,27 +425,15 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-
-            {/* Call to Action */}
-            {/* <div className="flex flex-col items-center space-y-4">
-              <Button
-                size="lg"
-                className={`bg-gradient-to-r ${themeClasses.gradient} hover:opacity-90 text-white ${layoutClasses.buttonStyle}`}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Admission Form
-              </Button>
-              <p className="text-sm text-gray-500">
-                For assistance, contact the school office or visit our campus.
-              </p>
-            </div> */}
           </div>
         </div>
       </section>
 
-
       {/* Contact Section */}
-      <section id="contact" className={`${layoutClasses.sectionSpacing}  bg-gradient-to-br from-gray-900 to-blue-900 text-white`}>
+      <section
+        id="contact"
+        className={`${layoutClasses.sectionSpacing}  bg-gradient-to-br from-gray-900 to-blue-900 text-white`}
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -424,7 +446,9 @@ export default function HomePage() {
                 <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${themeClasses.gradient} rounded-full flex items-center justify-center`}>
+                    <div
+                      className={`w-12 h-12 bg-gradient-to-br ${themeClasses.gradient} rounded-full flex items-center justify-center`}
+                    >
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div>
@@ -445,11 +469,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">Phone</h4>
-                      <p className="opacity-90">
-                        +91 9826986106
-                        <br />
-                        {/* +91 87654 32109 */}
-                      </p>
+                      <p className="opacity-90">+91 9826986106</p>
                     </div>
                   </div>
 
@@ -488,7 +508,6 @@ export default function HomePage() {
                   </div>
                 </div>
 
-
                 <div className="mt-8">
                   <h4 className="font-semibold mb-4">Office Hours</h4>
                   <p className="opacity-90">Monday - Saturday: 9:00 AM - 4:00 PM</p>
@@ -510,38 +529,53 @@ export default function HomePage() {
                   <RHSLogo variant={"default"} size="md" theme={theme} onDark={true} />
                 </div>
                 <p className="opacity-90 mb-4">
-                  Dedicated to delivering quality education and nurturing young minds for a brighter future in Waidhan, Singrauli.
+                  Dedicated to delivering quality education and nurturing young minds for a brighter future in Waidhan,
+                  Singrauli.
                 </p>
               </div>
-              {/* Quick Links and Resources - same row, different columns on mobile and desktop */}
               <div className="grid grid-cols-2 gap-20">
                 <div>
                   <h4 className="font-semibold mb-4">Quick Links</h4>
                   <ul className="space-y-2 text-sm opacity-90">
                     <li>
-                      <Link href="#about" className="hover:text-blue-400 transition-colors">
+                      <span
+                        onClick={() => handleNavigation("about", "/?section=about")}
+                        className="hover:text-blue-400 transition-colors cursor-pointer"
+                      >
                         About Us
-                      </Link>
+                      </span>
                     </li>
                     <li>
-                      <Link href="#academics" className="hover:text-blue-400 transition-colors">
+                      <span
+                        onClick={() => handleNavigation("academics", "/?section=academics")}
+                        className="hover:text-blue-400 transition-colors cursor-pointer"
+                      >
                         Academics
-                      </Link>
+                      </span>
                     </li>
                     <li>
-                      <Link href="#portal" className="hover:text-blue-400 transition-colors">
+                      <span
+                        onClick={() => handleNavigation("portal", "/?section=portal")}
+                        className="hover:text-blue-400 transition-colors cursor-pointer"
+                      >
                         Portal
-                      </Link>
+                      </span>
                     </li>
                     <li>
-                      <Link href="#admissions" className="hover:text-blue-400 transition-colors">
+                      <span
+                        onClick={() => handleNavigation("admissions", "/?section=admissions")}
+                        className="hover:text-blue-400 transition-colors cursor-pointer"
+                      >
                         Admissions
-                      </Link>
+                      </span>
                     </li>
                     <li>
-                      <Link href="#contact" className="hover:text-blue-400 transition-colors">
+                      <span
+                        onClick={() => handleNavigation("contact", "/?section=contact")}
+                        className="hover:text-blue-400 transition-colors cursor-pointer"
+                      >
                         Contact
-                      </Link>
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -559,12 +593,9 @@ export default function HomePage() {
                         Our Faculty
                       </Link>
                     </li>
-
                   </ul>
                 </div>
-
               </div>
-
             </div>
 
             <div className="border-t border-gray-800 mt-8 pt-8 text-center">

@@ -1,6 +1,19 @@
-# *
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://rhswaidhan.com/sitemap.xml
+# Sitemap
+Sitemap: https://rhswaidhan.vercel.app/sitemap.xml
+
+# Main pages
+Allow: /
+Allow: /home
+Allow: /about
+Allow: /academics
+Allow: /portal
+Allow: /admissions
+Allow: /contact
+Allow: /gallery
+Allow: /faculty
+
+# Disallow admin/theme pages from indexing
+Disallow: /themes
