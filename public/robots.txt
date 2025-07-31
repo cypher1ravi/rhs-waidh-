@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://rhswaidhan.vercel.app/sitemap.xml
+Sitemap: https://rhswaidhan.com/sitemap.xml
 
 # Main pages
 Allow: /
