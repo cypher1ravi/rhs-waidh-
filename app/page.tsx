@@ -101,13 +101,9 @@ export default function HomePage() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
               {navLinks.map((link) => (
-                <span
-                  key={link.href}
-                  onClick={() => handleNavigation(link.sectionId, `/?section=${link.sectionId}`)}
-                  className={linkClasses}
-                >
+                <Link key={link.href} href={link.href} className={linkClasses}>
                   {link.label}
-                </span>
+                </Link>
               ))}
             </nav>
 
@@ -126,13 +122,14 @@ export default function HomePage() {
             <nav className="md:hidden mt-4 pb-4 border-t border-gray-200">
               <div className="flex flex-col space-y-3 pt-4">
                 {navLinks.map((link) => (
-                  <span
+                  <Link
                     key={link.href}
-                    onClick={() => handleNavigation(link.sectionId, `/?section=${link.sectionId}`)}
+                    href={link.href}
                     className={linkClasses}
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
-                  </span>
+                  </Link>
                 ))}
               </div>
             </nav>
@@ -538,44 +535,29 @@ export default function HomePage() {
                   <h4 className="font-semibold mb-4">Quick Links</h4>
                   <ul className="space-y-2 text-sm opacity-90">
                     <li>
-                      <span
-                        onClick={() => handleNavigation("about", "/?section=about")}
-                        className="hover:text-blue-400 transition-colors cursor-pointer"
-                      >
+                      <Link href="/about" className="hover:text-blue-400 transition-colors">
                         About Us
-                      </span>
+                      </Link>
                     </li>
                     <li>
-                      <span
-                        onClick={() => handleNavigation("academics", "/?section=academics")}
-                        className="hover:text-blue-400 transition-colors cursor-pointer"
-                      >
+                      <Link href="/academics" className="hover:text-blue-400 transition-colors">
                         Academics
-                      </span>
+                      </Link>
                     </li>
                     <li>
-                      <span
-                        onClick={() => handleNavigation("portal", "/?section=portal")}
-                        className="hover:text-blue-400 transition-colors cursor-pointer"
-                      >
+                      <Link href="/portal" className="hover:text-blue-400 transition-colors">
                         Portal
-                      </span>
+                      </Link>
                     </li>
                     <li>
-                      <span
-                        onClick={() => handleNavigation("admissions", "/?section=admissions")}
-                        className="hover:text-blue-400 transition-colors cursor-pointer"
-                      >
+                      <Link href="/admissions" className="hover:text-blue-400 transition-colors">
                         Admissions
-                      </span>
+                      </Link>
                     </li>
                     <li>
-                      <span
-                        onClick={() => handleNavigation("contact", "/?section=contact")}
-                        className="hover:text-blue-400 transition-colors cursor-pointer"
-                      >
+                      <Link href="/contact" className="hover:text-blue-400 transition-colors">
                         Contact
-                      </span>
+                      </Link>
                     </li>
                   </ul>
                 </div>

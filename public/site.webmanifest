@@ -1,1 +1,113 @@
-{"name":"Ravindra High School","short_name":"RHS","icons":[{"src":"/android-chrome-192x192.webp","sizes":"192x192","type":"image/png"},{"src":"/android-chrome-512x512.webp","sizes":"512x512","type":"image/png"}],"theme_color":"#ffffff","background_color":"#ffffff","display":"standalone"}
+{
+  "name": "Ravindra High School Waidhan",
+  "short_name": "RHS Waidhan",
+  "description": "Quality education in Waidhan, Singrauli with NCERT curriculum and modern facilities",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["education", "school"],
+  "icons": [
+    {
+      "src": "/favicon-16x16.webp",
+      "sizes": "16x16",
+      "type": "image/webp"
+    },
+    {
+      "src": "/favicon-32x32.webp",
+      "sizes": "32x32",
+      "type": "image/webp"
+    },
+    {
+      "src": "/android-chrome-192x192.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/android-chrome-512x512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    },
+    {
+      "src": "/maskable-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "description": "Go to home page",
+      "url": "/home",
+      "icons": [
+        {
+          "src": "/images/rhs-logo.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    },
+    {
+      "name": "Admissions",
+      "short_name": "Admissions",
+      "description": "View admission information",
+      "url": "/admissions",
+      "icons": [
+        {
+          "src": "/images/rhs-logo.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    },
+    {
+      "name": "Portal",
+      "short_name": "Portal",
+      "description": "Access student portal",
+      "url": "/portal",
+      "icons": [
+        {
+          "src": "/images/rhs-logo.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Contact information",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/images/rhs-logo.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-wide.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "RHS Waidhan Homepage"
+    },
+    {
+      "src": "/images/screenshot-narrow.webp",
+      "sizes": "640x1136",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "RHS Waidhan Mobile View"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
