@@ -2,10 +2,11 @@
 module.exports = {
   siteUrl: process.env.SITE_URL || "https://rhswaidhan.com",
   generateRobotsTxt: true,
+  generateIndexSitemap: false, // Disable index sitemap for static exports
   sitemapSize: 7000,
   changefreq: "weekly",
   priority: 0.7,
-  exclude: ["/themes"],
+  exclude: ["/themes", "/api/*"],
   additionalPaths: async (config) => [
     await config.transform(config, "/", {
       changefreq: "daily",
@@ -49,9 +50,8 @@ module.exports = {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/themes", "/api"],
+        disallow: ["/themes/", "/api/"],
       },
     ],
-    additionalSitemaps: ["https://rhswaidhan.com/sitemap.xml"],
   },
 }
