@@ -1,14 +1,15 @@
-"use client"
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
+import type { Metadata } from "next"
+import HomePageClient from "./HomePageClient"
+
+export const metadata: Metadata = {
+  title: "Home - Ravindra High School Waidhan",
+  description:
+    "Welcome to Ravindra High School Waidhan - Quality education in Singrauli with NCERT curriculum and modern facilities.",
+  alternates: {
+    canonical: "https://rhswaidhan.com/home",
+  },
+}
 
 export default function HomePage() {
-  const router = useRouter()
-
-  useEffect(() => {
-    // Redirect to main page with home section
-    router.replace("/?section=home")
-  }, [router])
-
-  return null
+  return <HomePageClient />
 }
