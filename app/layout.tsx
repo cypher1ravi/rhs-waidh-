@@ -17,7 +17,7 @@ const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
 
 export const metadata: Metadata = {
   title: {
-    default: "Ravindra High School | Quality Education in Waidhan, Singrauli",
+    default: "Ravindra High School |  Waidhan, Singrauli",
     template: "%s | Ravindra High School",
   },
   description:

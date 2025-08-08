@@ -1,4 +1,4 @@
-const CACHE_NAME = "rhs-waidhan-v1"
+const CACHE_NAME = "rhs-waidhan-v2"
 const OFFLINE_URL = "/offline"
 
 // Assets to cache on install
@@ -63,52 +63,43 @@ self.addEventListener("activate", (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener("fetch", (event) => {
-  // Skip non-GET requests
-  if (event.request.method !== "GET") return
+  const req = event.request;
+  if (req.method !== "GET") return;
+  if (!req.url.startsWith(self.location.origin)) return;
 
-  // Skip external requests
-  if (!event.request.url.startsWith(self.location.origin)) return
+  const url = new URL(req.url);
+  const isNavigate = req.mode === "navigate";
+  const isRSC = url.searchParams.has("_rsc") ||
+    req.headers.get("Accept")?.includes("text/x-component");
+
+  // Navigations: network-only, fallback to /offline
+  if (isNavigate) {
+    event.respondWith(
+      fetch(req).catch(() => caches.match("/offline"))
+    );
+    return;
+  }
+
+  // Don’t touch RSC
+  if (isRSC) return;
+
+  // Cache only real static assets (examples)
+  const isNextStatic = url.pathname.startsWith("/_next/static/");
+  const isImage = url.pathname.match(/\.(png|jpg|jpeg|webp|gif|svg)$/);
+  const isFont = url.pathname.match(/\.(woff2?|ttf|otf|eot)$/);
+  if (!(isNextStatic || isImage || isFont)) return;
 
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        console.log("Serving from cache:", event.request.url)
-        return cachedResponse
-      }
+    caches.open(CACHE_NAME).then(async (cache) => {
+      const cached = await cache.match(req);
+      if (cached) return cached;
+      const resp = await fetch(req).catch(() => null);
+      if (resp && resp.ok && resp.type === "basic") cache.put(req, resp.clone());
+      return resp || new Response("Offline", { status: 503 });
+    })
+  );
+});
 
-      console.log("Fetching from network:", event.request.url)
-      return fetch(event.request)
-        .then((response) => {
-          // Don't cache non-successful responses
-          if (!response || response.status !== 200 || response.type !== "basic") {
-            return response
-          }
-
-          // Clone the response
-          const responseToCache = response.clone()
-
-          // Cache the response
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache)
-          })
-
-          return response
-        })
-        .catch(() => {
-          // If both cache and network fail, show offline page for navigation requests
-          if (event.request.mode === "navigate") {
-            return caches.match(OFFLINE_URL)
-          }
-
-          // For other requests, return a generic offline response
-          return new Response("Offline", {
-            status: 503,
-            statusText: "Service Unavailable",
-          })
-        })
-    }),
-  )
-})
 
 // Background sync for form submissions
 self.addEventListener("sync", (event) => {

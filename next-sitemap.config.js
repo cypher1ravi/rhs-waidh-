@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: process.env.SITE_URL || "https://rhswaidhan.com",
-  generateRobotsTxt: true,
+  generateRobotsTxt: false,
   generateIndexSitemap: false, // Disable index sitemap for static exports
   sitemapSize: 7000,
   changefreq: "weekly",
