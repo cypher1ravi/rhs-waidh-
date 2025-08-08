@@ -17,3 +17,5 @@ Allow: /faculty
 
 # Disallow admin/theme pages from indexing
 Disallow: /themes
+Disallow: /api
+
