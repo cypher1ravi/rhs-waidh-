@@ -94,14 +94,14 @@
   ],
   "screenshots": [
     {
-      "src": "/images/screenshot-wide.webp",
+      "src": "/images/screenshot-wide.png",
       "sizes": "1280x720",
       "type": "image/webp",
       "form_factor": "wide",
       "label": "RHS Waidhan Homepage"
     },
     {
-      "src": "/images/screenshot-narrow.webp",
+      "src": "/images/screenshot-narrow.png",
       "sizes": "640x1136",
       "type": "image/webp",
       "form_factor": "narrow",
